@@ -12,4 +12,11 @@ INSERT INTO categorias (descricao) VALUES ('Informática'), ('Celulares'),
 ('Bebê'),
 ('Games');
 
-SELECT * FROM categorias;
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+SELECT * FROM users;
