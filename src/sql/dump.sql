@@ -1,9 +1,9 @@
-CREATE TABLE categorias(
+CREATE TABLE categories(
 	id SERIAL PRIMARY KEY NOT NULL,
-  descricao VARCHAR(50) NOT NULL
+  description VARCHAR(50) NOT NULL
 );
 
-INSERT INTO categorias (descricao) VALUES ('Informática'), ('Celulares'), 
+INSERT INTO categories (description) VALUES ('Informática'), ('Celulares'), 
 ('Beleza e Perfumaria'), 
 ('Mercado'),
 ('Livros e Papelaria'),
