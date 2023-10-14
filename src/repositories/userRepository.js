@@ -16,7 +16,25 @@ const selectUserByEmail = async (email) => {
     return users;
 };
 
+const selectUserById = async (id) => {
+    const users = await knex('users').where('id', id);
+    
+    return users;
+}
+
+const updateUser = async (name, email, password, id) => {
+    const userUpdated = await knex('users').where('id', id).update({
+        name,
+        email,
+        password
+    });
+    
+    return userUpdated;
+};
+
 module.exports = {
     selectUserByEmail,
-    insertUser
+    insertUser,
+    updateUser,
+    selectUserById
 };
