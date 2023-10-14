@@ -1,7 +1,7 @@
 const knex = require('../database/connection');
 
 const selectAllCategories = async () => {
-    const categories = await knex('categorias').debug();
+    const categories = await knex('categories').debug();
 
     return categories;
 };
