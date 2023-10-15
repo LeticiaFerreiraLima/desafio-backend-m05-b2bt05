@@ -11,13 +11,13 @@ const insertUser = async (name, email, password) => {
 };
 
 const selectUserByEmail = async (email) => {
-    const users = await knex('users').where('email', email);
+    const users = await knex('users').where('email', email).first();
     
     return users;
 };
 
 const selectUserById = async (id) => {
-    const users = await knex('users').where('id', id);
+    const users = await knex('users').where('id', id).first();
     
     return users;
 }
