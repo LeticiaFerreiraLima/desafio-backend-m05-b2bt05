@@ -1,6 +1,8 @@
 const userRepository = require("../repositories/userRepository");
 const bcrypt = require('bcrypt');
 const throwCustomError = require("../utils/throwCustomError");
+const passwordJwt = require('../passwordJwt');
+const jwt = require('jsonwebtoken');
 
 const createUser = async (name, email, password) => {
   if (!name || !email || !password)
@@ -37,7 +39,35 @@ const updateUser = async (name, email, password, id) => {
   return await userRepository.updateUser(name, email, encryptedPassword, id);
 };
 
+const loginUser = async (email, password) => {
+
+  if(!email || !password)
+    throwCustomError("Preencha todos os campos obrigatórios.", 400);
+
+  const users = await userRepository.selectUserByEmail(email);
+  
+
+  if(!users)
+    throwCustomError("O usuário não foi encontrado", 404);
+    
+  const correctPassword = await bcrypt.compare(password, users.password);
+
+  if(!correctPassword)
+    throwCustomError("O email ou senha informados estão incorretos", 400);
+
+  const token = jwt.sign({id: users.id}, passwordJwt, {expiresIn: '8h'});
+
+  const { password: userPassword, ...user} = users;
+
+  return {
+    user,
+    token
+  }
+};
+
+
 module.exports = {
   createUser,
-  updateUser
+  updateUser,
+  loginUser
 };
