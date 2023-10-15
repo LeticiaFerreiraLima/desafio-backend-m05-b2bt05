@@ -8,7 +8,7 @@ const createUser = async (name, email, password) => {
 
   const users = await userRepository.selectUserByEmail(email);
 
-  if (users.length > 0)
+  if (users)
     throwCustomError("Já existe usuário cadastrado com o e-mail informado.",400);
 
   const encryptedPassword = await bcrypt.hash(password, 10);
@@ -23,7 +23,7 @@ const updateUser = async (name, email, password, id) => {
 
   const users = await userRepository.selectUserById(id);
 
-  if(users.length < 1)
+  if(users)
     throwCustomError("O usuário não foi encontrado", 404);
   
     const isEmailDifferent = email !== users[0].email;
