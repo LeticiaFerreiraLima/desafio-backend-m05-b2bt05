@@ -1,17 +1,18 @@
 const jwt = require('jsonwebtoken');
 const passwordJwt = require('../passwordJwt');
+const knex = require('../database/connection');
 
 const validateToken = async (req, res, next) => {
-    const { authorizarion } = req.headers;
+    const { authorization } = req.headers;
 
-    if (!authorizarion) {
+    if (!authorization) {
         return res.status(401).json({ message: 'Para acessar o recurso, deve ser enviado um token de autenticação válido.' });
     };
 
     const token = authorization.split(' ')[1];
 
     try {
-        const { id } = jwt.verify(token, senhajwt);
+        const { id } = jwt.verify(token, passwordJwt);
 
         const userFound = await knex('users').where({ id }).first();
 
@@ -19,12 +20,12 @@ const validateToken = async (req, res, next) => {
             return res.status(404).json({ message: 'User not found' });
         };
 
-        const { password, ...user } = rows[0];
+        const { password, ...user } = userFound;
 
         req.user = user;
 
         next();
-        
+
     } catch (error) {
         return res.status(400).json(error.message)
     }
