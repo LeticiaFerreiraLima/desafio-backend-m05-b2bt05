@@ -25,13 +25,12 @@ const updateUser = async (name, email, password, id) => {
 
   const users = await userRepository.selectUserById(id);
 
-  if (users)
+  if (!users || users.length === 0)
     throwCustomError("O usuário não foi encontrado", 404);
 
-  const isEmailDifferent = email !== users[0].email;
-  const userFound = users.length > 0;
+  const userByEmail = await userRepository.selectUserByEmail(email);
 
-  if (isEmailDifferent && userFound)
+  if ((email !== users.email && userByEmail))
     throwCustomError("O usuário não pode ser editado", 400);
 
   const encryptedPassword = await bcrypt.hash(password, 10);

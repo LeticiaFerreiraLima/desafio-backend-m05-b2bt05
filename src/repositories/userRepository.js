@@ -5,20 +5,20 @@ const insertUser = async (name, email, password) => {
         name,
         email,
         password
-    }).returning('*'); 
+    }).returning('*');
 
     return newUser;
 };
 
 const selectUserByEmail = async (email) => {
     const users = await knex('users').where('email', email).first();
-    
+
     return users;
 };
 
 const selectUserById = async (id) => {
     const users = await knex('users').where('id', id).first();
-    
+
     return users;
 }
 
@@ -28,7 +28,7 @@ const updateUser = async (name, email, password, id) => {
         email,
         password
     });
-    
+
     return userUpdated;
 };
 
