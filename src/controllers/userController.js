@@ -20,9 +20,9 @@ const updateUser = async (req, res) => {
     const { user } = req;
 
     try {
-        const userUpdated = await userService.updateUser(name, email, password, user.id);
+        await userService.updateUser(name, email, password, user.id);
 
-        return res.status(200).json(userUpdated);
+        return res.status(204).json({message: 'Usuário alterado com sucesso'});
 
     } catch (error) {
         const { message, code } = error;
