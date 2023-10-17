@@ -14,7 +14,7 @@ Uma API para um PDV (Frente de Caixa).
 
 ## **Endpoints**
 
-- HOST: https://cautious-garters-hare.cyclic.cloud
+- HOST: https://cautious-garters-hare.cyclic.cloud/categories
 
 ### **Listar categorias**
 
