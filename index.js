@@ -6,7 +6,7 @@ const cors = require('cors');
 
 app.use(express.json());
 app.use(router);
-app.unsubscribe(cors);
+app.use(cors());
 
 const serverPort = process.env.SERVER_PORT;
 
