@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/categories', getCategories);
 router.post('/users', createUser);
-router.put('/users/:id', validateToken, updateUser);
+router.put('/users', validateToken, updateUser);
 router.post('/users/login', loginUser);
 router.get('/user', validateToken, getUser);
 
