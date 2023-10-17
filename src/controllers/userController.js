@@ -22,7 +22,7 @@ const updateUser = async (req, res) => {
     try {
         await userService.updateUser(name, email, password, user.id);
 
-        return res.status(204).json({message: 'Usuário alterado com sucesso'});
+        return res.status(204).send();
 
     } catch (error) {
         const { message, code } = error;
