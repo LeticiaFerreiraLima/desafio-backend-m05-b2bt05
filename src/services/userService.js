@@ -35,7 +35,9 @@ const updateUser = async (name, email, password, id) => {
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
-  return await userRepository.updateUser(name, email, encryptedPassword, id);
+   await userRepository.updateUser(name, email, encryptedPassword, id);
+
+   return users;
 };
 
 const loginUser = async (email, password) => {
