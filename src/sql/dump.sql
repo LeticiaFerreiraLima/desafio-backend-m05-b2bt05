@@ -19,4 +19,18 @@ CREATE TABLE users(
   password TEXT NOT NULL
 );
 
-SELECT * FROM users;
+CREATE TABLE products(
+	id SERIAL PRIMARY KEY NOT NULL,
+  description TEXT,
+  amount INTEGER NOT NULL,
+  price INTEGER NOT NULL,
+  category_id INTEGER REFERENCES categories(id)
+);
+
+CREATE TABLE client(
+	id SERIAL PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  cpf TEXT UNIQUE NOT NULL,
+  adress TEXT
+);
