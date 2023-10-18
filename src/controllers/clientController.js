@@ -15,10 +15,23 @@ const createClient = async (req, res) => {
     }catch(error){
         const { code, message } = error;
 
-        res.status(code).send({ message: message });
+        return res.status(code).send({ message: message });
+    }
+};
+
+const getClients = async (req, res) => {
+    try{
+        const clients = await clientService.getClients();
+        
+        return res.status(200).json(clients);
+    }catch(error){
+        const { code, message } = error;
+
+        return res.status(code).send({ message: message });
     }
 };
 
 module.exports = {
-    createClient
+    createClient,
+    getClients
 };

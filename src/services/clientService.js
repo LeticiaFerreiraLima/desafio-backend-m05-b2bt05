@@ -22,6 +22,13 @@ const createClient = async (name, email, cpf, adress, userId) => {
   return await clientRepository.insertClient(name, email, cpf, adress);
 };
 
+const getClients = async () => {
+  const clients = await clientRepository.getClients();
+
+  return clients;
+};
+
 module.exports = {
-  createClient
+  createClient,
+  getClients
 };

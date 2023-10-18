@@ -23,8 +23,15 @@ const selectClientByCpf = async (cpf) => {
     return client;
 };
 
+const getClients = async () => {
+    const clients = await knex('clients');
+
+    return clients;
+};
+
 module.exports = {
     insertClient,
     selectClientByEmail,
-    selectClientByCpf
+    selectClientByCpf,
+    getClients
 }
