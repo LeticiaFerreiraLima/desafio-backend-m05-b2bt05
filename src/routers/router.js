@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/categories', getCategories);
 router.post('/users', createUser);
+router.put('/users', validateToken, updateUser);
 router.post('/users/login', loginUser);
 router.put('/users/:id', validateToken, updateUser);
 router.get('/user', validateToken, getUser);

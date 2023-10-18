@@ -17,12 +17,12 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { name, email, password } = req.body;
-    const { id } = req.params;
+    const { user } = req;
 
     try {
-        const userUpdated = await userService.updateUser(name, email, password, id);
+        await userService.updateUser(name, email, password, user.id);
 
-        return res.status(200).json(userUpdated);
+        return res.status(204).send();
 
     } catch (error) {
         const { message, code } = error;
