@@ -6,6 +6,13 @@ const selectAllCategories = async () => {
     return categories;
 };
 
+const selectCategoryById = async (category_id) => {
+    const category = await knex('categories').where('id', category_id).first();
+
+    return category;
+}
+
 module.exports = {
-    selectAllCategories
+    selectAllCategories,
+    selectCategoryById
 };
