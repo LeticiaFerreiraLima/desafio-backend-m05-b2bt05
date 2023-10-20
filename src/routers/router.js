@@ -3,6 +3,7 @@ const { getCategories } = require('../controllers/categoriesController');
 const { createUser, updateUser, loginUser, getUser } = require('../controllers/userController');
 const { createClient, getClients } = require('../controllers/clientController');
 const validateToken = require('../middlewares/tokenAuthentication.js');
+const { createProduct } = require('../controllers/productsController');
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.put('/users/:id', validateToken, updateUser);
 router.get('/user', validateToken, getUser);//nao adicionei no readme pois fiquei com duvida em '/user'
 router.post('/clients', validateToken, createClient);
 router.get('/clients', validateToken, getClients);
+router.post('/products', validateToken, createProduct)
 
 module.exports = router;
