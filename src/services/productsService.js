@@ -15,6 +15,20 @@ const createProduct = async (description, amount, price, category_id) => {
     return await productRepository.insertProduct(description, amount, price, category_id);
 };
 
+const getProduct = async (id) => {
+    const productExists = await productRepository.selectProductById(id);
+
+    console.log(productExists)
+    
+    if (!productExists)
+      throwCustomError("O produto não foi encontrado", 404);
+  
+    const {...product} = productExists;
+
+    return product;
+}
+
 module.exports = {
-    createProduct
+    createProduct,
+    getProduct
 }

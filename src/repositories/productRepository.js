@@ -11,6 +11,14 @@ const insertProduct = async (description, amount, price, category_id) => {
     return newProduct;
 };
 
+const selectProductById = async (id) => {
+    const product = await knex('products').where('id', id).first();
+
+    return product;
+    
+}
+
 module.exports = {
-    insertProduct
+    insertProduct,
+    selectProductById
 }
