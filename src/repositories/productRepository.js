@@ -15,10 +15,23 @@ const selectProductById = async (id) => {
     const product = await knex('products').where('id', id).first();
 
     return product;
-    
-}
+
+};
+
+const selectAllProducts = async (category_id) => {
+    const query = await knex('products');
+
+    if (category_id) {
+        query.where('category_id', category_id);
+    }
+
+    const allProducts = query.select('*');
+
+    return allProducts;
+};
 
 module.exports = {
     insertProduct,
-    selectProductById
+    selectProductById,
+    selectAllProducts
 }
