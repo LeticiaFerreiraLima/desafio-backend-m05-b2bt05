@@ -3,7 +3,7 @@ const { getCategories } = require('../controllers/categoriesController');
 const { createUser, updateUser, loginUser, getUser } = require('../controllers/userController');
 const { createClient, getClients } = require('../controllers/clientController');
 const validateToken = require('../middlewares/tokenAuthentication.js');
-const { createProduct, getProduct, getAllProducts } = require('../controllers/productsController');
+const { createProduct, getProduct, getAllProducts, updateProduct } = require('../controllers/productsController');
 
 const router = express.Router();
 
@@ -18,5 +18,6 @@ router.get('/clients', validateToken, getClients);
 router.post('/products', validateToken, createProduct);
 router.get('/products/:id', validateToken, getProduct);
 router.get('/products', validateToken, getAllProducts)
+router.put('/products/:id', validateToken, updateProduct);
 
 module.exports = router;

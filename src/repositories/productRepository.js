@@ -30,8 +30,21 @@ const selectAllProducts = async (category_id) => {
     return allProducts;
 };
 
+const updateProduct = async (id, description, amount, price, category_id) => {
+
+    const productUpdated = await knex('products').where({ id }).update({
+        description,
+        amount,
+        price,
+        category_id,
+    });
+
+    return productUpdated;
+};
+
 module.exports = {
     insertProduct,
     selectProductById,
-    selectAllProducts
+    selectAllProducts,
+    updateProduct
 }
