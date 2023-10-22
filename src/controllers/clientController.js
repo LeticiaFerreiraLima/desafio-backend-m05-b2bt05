@@ -44,7 +44,7 @@ const updateClient = async (req, res) => {
 
         const { code, message } = error;
 
-        return res.status(500).json({message: message});
+        return res.status(code).json({message: message});
     }
 }
 module.exports = {
