@@ -49,11 +49,22 @@ const updateProduct = async (id, description, amount, price, category_id) => {
 
     return await productRepository.updateProduct(id, description, amount, price, category_id);
 
-}
+};
+
+const deleteProductById = async (id) => {
+    const productExists = await productRepository.selectProductById(id);
+
+    if (!productExists)
+        throwCustomError("O produto não foi encontrado", 404);
+
+    return await productRepository.deleteProductById(id);
+
+};
 
 module.exports = {
     createProduct,
     getProduct,
     getAllProducts,
-    updateProduct
+    updateProduct,
+    deleteProductById
 }

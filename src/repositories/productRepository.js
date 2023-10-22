@@ -42,9 +42,17 @@ const updateProduct = async (id, description, amount, price, category_id) => {
     return productUpdated;
 };
 
+const deleteProductById = async (id) => {
+    const product = await knex('products').where('id', id).del();
+
+    return product;
+
+};
+
 module.exports = {
     insertProduct,
     selectProductById,
     selectAllProducts,
-    updateProduct
+    updateProduct,
+    deleteProductById
 }
