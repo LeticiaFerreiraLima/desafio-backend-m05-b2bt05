@@ -13,7 +13,7 @@ const insertClient = async (name, email, cpf, adress) => {
 
 const selectClientByEmail = async (email) => {
     const client = await knex('clients').where('email', email).first();
-
+    
     return client;
 };
 
@@ -29,9 +29,29 @@ const getClients = async () => {
     return clients;
 };
 
+const selectClientById = async (id) => {
+    const client = await knex('clients').where('id', id).first();
+
+    return client;
+};
+
+const updateClient = async (name, email, cpf, adress, id) => {
+        const clientUpdated = await knex('clients').where('id', id).update({
+            name,
+            email,
+            cpf,
+            adress
+        });
+    
+        return clientUpdated;
+};
+
+
 module.exports = {
     insertClient,
     selectClientByEmail,
     selectClientByCpf,
-    getClients
+    getClients,
+    selectClientById,
+    updateClient
 }
