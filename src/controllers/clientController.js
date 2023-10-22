@@ -31,7 +31,24 @@ const getClients = async (req, res) => {
     }
 };
 
+const updateClient = async (req, res) => {
+    const { name, email, cpf, adress } = req.body;
+    const { id } = req.params;
+
+    try {
+        await clientService.updateClient(name, email, cpf, adress, id);
+
+        return res.status(204).send();
+
+    } catch(error) {
+
+        const { code, message } = error;
+
+        return res.status(500).json({message: message});
+    }
+}
 module.exports = {
     createClient,
-    getClients
+    getClients,
+    updateClient
 };
