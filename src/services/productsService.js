@@ -7,7 +7,7 @@ const createProduct = async (description, amount, price, category_id) => {
         throwCustomError("Preencha todos os campos obrigatórios.", 400);
 
     const categoryExists = await categoriesRepository.selectCategoryById(category_id);
-    
+
     if (!categoryExists)
         throwCustomError("Não existe a categoria informada.", 404);
 
@@ -19,16 +19,41 @@ const getProduct = async (id) => {
     const productExists = await productRepository.selectProductById(id);
 
     console.log(productExists)
-    
+
     if (!productExists)
-      throwCustomError("O produto não foi encontrado", 404);
-  
-    const {...product} = productExists;
+        throwCustomError("O produto não foi encontrado", 404);
+
+    const { ...product } = productExists;
 
     return product;
 }
 
+const getAllProducts = async (category_id) => {
+    return productRepository.selectAllProducts(category_id);
+}
+
+const updateProduct = async (id, description, amount, price, category_id) => {
+    const productExists = await productRepository.selectProductById(id);
+
+    if (!productExists)
+        throwCustomError("O produto não foi encontrado", 404);
+
+
+    if (!description || !amount || !price || !category_id)
+        throwCustomError("Preencha todos os campos obrigatórios.", 400);
+
+    const categoryExists = await categoriesRepository.selectCategoryById(category_id);
+
+    if (!categoryExists)
+        throwCustomError("Não existe a categoria informada.", 404);
+
+    return await productRepository.updateProduct(id, description, amount, price, category_id);
+
+}
+
 module.exports = {
     createProduct,
-    getProduct
+    getProduct,
+    getAllProducts,
+    updateProduct
 }
