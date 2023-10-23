@@ -1,7 +1,7 @@
 const clientRepository = require("../repositories/clientRepository");
 const throwCustomError = require("../utils/throwCustomError");
 
-const createClient = async (name, email, cpf, adress, userId) => {
+const createClient = async (name, email, cpf, adress) => {
 
   if (!name || !email || !cpf)
     throwCustomError("Preencha todos os campos obrigatórios.", 400);

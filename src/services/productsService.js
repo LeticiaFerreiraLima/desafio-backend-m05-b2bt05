@@ -18,8 +18,6 @@ const createProduct = async (description, amount, price, category_id) => {
 const getProduct = async (id) => {
     const productExists = await productRepository.selectProductById(id);
 
-    console.log(productExists)
-
     if (!productExists)
         throwCustomError("O produto não foi encontrado", 404);
 

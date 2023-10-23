@@ -19,13 +19,13 @@ const selectProductById = async (id) => {
 };
 
 const selectAllProducts = async (category_id) => {
-    const query = await knex('products');
+    let query = knex('products'); // Inicialize a consulta
 
     if (category_id) {
-        query.where('category_id', category_id);
+        query = query.where('category_id', category_id);
     }
 
-    const allProducts = query.select('*');
+    const allProducts = await query.select('*');
 
     return allProducts;
 };
