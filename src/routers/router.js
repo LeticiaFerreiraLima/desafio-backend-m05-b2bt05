@@ -12,7 +12,7 @@ router.post('/users', createUser);
 router.put('/users', validateToken, updateUser);
 router.post('/users/login', loginUser);
 router.put('/users/:id', validateToken, updateUser);
-router.get('/users', validateToken, getUser);//nao adicionei no readme pois fiquei com duvida em '/user'
+router.get('/users', validateToken, getUser);
 router.post('/clients', validateToken, createClient);
 router.get('/clients', validateToken, getClients);
 router.put('/clients/:id', validateToken, updateClient);
