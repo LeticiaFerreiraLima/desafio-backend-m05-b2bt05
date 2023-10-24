@@ -7,19 +7,19 @@ const { createProduct, getProduct, getAllProducts, updateProduct, deleteProductB
 
 const router = express.Router();
 
-router.get('/categories', getCategories);
-router.post('/users', createUser);
-router.put('/users', validateToken, updateUser);
-router.post('/users/login', loginUser);
-router.put('/users/:id', validateToken, updateUser);
-router.get('/users', validateToken, getUser);
-router.post('/clients', validateToken, createClient);
-router.get('/clients', validateToken, getClients);
-router.put('/clients/:id', validateToken, updateClient);
-router.post('/products', validateToken, createProduct);
-router.get('/products/:id', validateToken, getProduct);
-router.get('/products', validateToken, getAllProducts)
-router.put('/products/:id', validateToken, updateProduct);
-router.delete('/products/:id', validateToken, deleteProductById)
+router.get('/categoria', getCategories);
+router.post('/usuario', createUser);
+router.put('/usuario', validateToken, updateUser);
+router.post('/login', loginUser);
+router.put('/usuario/:id', validateToken, updateUser);
+router.get('/usuario', validateToken, getUser);
+router.post('/cliente', validateToken, createClient);
+router.get('/cliente', validateToken, getClients);
+router.put('/cliente/:id', validateToken, updateClient);
+router.post('/produto', validateToken, createProduct);
+router.get('/produto/:id', validateToken, getProduct);
+router.get('/produto', validateToken, getAllProducts)
+router.put('/produto/:id', validateToken, updateProduct);
+router.delete('/produto/:id', validateToken, deleteProductById)
 
 module.exports = router;
