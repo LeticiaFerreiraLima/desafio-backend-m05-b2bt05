@@ -11,6 +11,8 @@ const createProduct = async (description, amount, price, category_id) => {
     if (!categoryExists)
         throwCustomError("Não existe a categoria informada.", 404);
 
+    if(amount < 0)
+        throwCustomError("O estoque não pode ser negativo.", 400);
 
     return await productRepository.insertProduct(description, amount, price, category_id);
 };
@@ -44,6 +46,9 @@ const updateProduct = async (id, description, amount, price, category_id) => {
 
     if (!categoryExists)
         throwCustomError("Não existe a categoria informada.", 404);
+
+    if(amount < 0)
+    throwCustomError("O estoque não pode ser negativo.", 400);
 
     return await productRepository.updateProduct(id, description, amount, price, category_id);
 
