@@ -27,10 +27,23 @@ CREATE TABLE products(
   category_id INTEGER REFERENCES categories(id)
 );
 
-CREATE TABLE client(
+CREATE TABLE clients(
 	id SERIAL PRIMARY KEY NOT NULL,
   name TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
   cpf TEXT UNIQUE NOT NULL,
   adress TEXT
+);
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    client_id INTEGER references clients(id) NOT NULL,
+    observation TEXT
+);
+
+CREATE TABLE orders_products (
+    id SERIAL PRIMARY KEY,
+    order_id INTEGER references orders(id),
+    product_id INTEGER references products(id) NOT NULL,
+    amount_product INTEGER NOT NULL
 );
