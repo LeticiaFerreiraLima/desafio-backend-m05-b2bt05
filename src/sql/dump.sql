@@ -38,12 +38,14 @@ CREATE TABLE clients(
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     client_id INTEGER references clients(id) NOT NULL,
-    observation TEXT
+    observation TEXT,
+  	total_value INTEGER NOT NULL
 );
 
 CREATE TABLE orders_products (
     id SERIAL PRIMARY KEY,
     order_id INTEGER references orders(id),
     product_id INTEGER references products(id) NOT NULL,
-    amount_product INTEGER NOT NULL
+    amount_product INTEGER NOT NULL,
+  	product_value INTEGER NOT NULL
 );
