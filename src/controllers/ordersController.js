@@ -13,9 +13,9 @@ const createOrder = async (req, res) => {
     } catch (error) {
         const { message, code } = error;
 
-        return res.status(500).json({ message: message });
+        return res.status(code).json({ message: message });
     };
-    
+
 }
 
 
