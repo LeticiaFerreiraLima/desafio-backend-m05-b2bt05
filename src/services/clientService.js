@@ -54,8 +54,9 @@ const updateClient = async (name, email, cpf, adress, id) => {
     return await clientRepository.updateClient(name, email, cpf, adress, id);
   };
 
+
 module.exports = {
   createClient,
   getClients,
   updateClient
-};
+}

@@ -4,6 +4,7 @@ const { createUser, updateUser, loginUser, getUser } = require('../controllers/u
 const { createClient, getClients, updateClient } = require('../controllers/clientController');
 const validateToken = require('../middlewares/tokenAuthentication.js');
 const { createProduct, getProduct, getAllProducts, updateProduct, deleteProductById } = require('../controllers/productsController');
+const { createOrder } = require('../controllers/ordersController')
 
 const router = express.Router();
 
@@ -21,5 +22,7 @@ router.get('/produto/:id', validateToken, getProduct);
 router.get('/produto', validateToken, getAllProducts)
 router.put('/produto/:id', validateToken, updateProduct);
 router.delete('/produto/:id', validateToken, deleteProductById)
+router.post('/pedido', validateToken, createOrder);
+
 
 module.exports = router;
