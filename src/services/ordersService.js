@@ -19,8 +19,8 @@ const createOrder = async (client_id, observation, products_order) => {
   
   for (let i = 0; i <  products_order.length; i++) {
 
-    // if (!product[].product_id || !product.amount_product)
-    //   throwCustomError("Preencha todos os campos obrigatórios.", 400);
+    if (!products_order[i].product_id || !products_order[i].amount_product)
+      throwCustomError("Preencha todos os campos obrigatórios.", 400);
 
     let product = products_order[i];
 
