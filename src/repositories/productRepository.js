@@ -49,10 +49,21 @@ const deleteProductById = async (id) => {
 
 };
 
+const subtractFromStock = async (stockOfProduct, product_id) => {
+    
+
+    const productUpdated = await knex("products")
+    .where({ id: product_id })
+    .update({ amount: stockOfProduct });
+    
+    return productUpdated
+
+}
 module.exports = {
     insertProduct,
     selectProductById,
     selectAllProducts,
     updateProduct,
-    deleteProductById
+    deleteProductById,
+    subtractFromStock
 }
