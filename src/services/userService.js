@@ -1,7 +1,6 @@
 const userRepository = require("../repositories/userRepository");
 const bcrypt = require('bcrypt');
 const throwCustomError = require("../utils/throwCustomError");
-const passwordJwt = require('../passwordJwt');
 const jwt = require('jsonwebtoken');
 
 const createUser = async (name, email, password) => {
@@ -54,7 +53,7 @@ const loginUser = async (email, password) => {
   if (!correctPassword)
     throwCustomError("O email ou senha informados estão incorretos", 400);
 
-  const token = jwt.sign({ id: users.id }, passwordJwt, { expiresIn: '8h' });
+    const token = jwt.sign({ id: users.id }, process.env.JWT_PASSWORD, { expiresIn: '8h' });
 
   const { password: userPassword, ...user } = users;
 

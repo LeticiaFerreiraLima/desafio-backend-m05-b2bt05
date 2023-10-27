@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const passwordJwt = require('../passwordJwt');
 const knex = require('../database/connection');
 
 const validateToken = async (req, res, next) => {
@@ -12,7 +11,7 @@ const validateToken = async (req, res, next) => {
     const token = authorization.split(' ')[1];
 
     try {
-        const { id } = jwt.verify(token, passwordJwt);
+        const { id } = jwt.verify(token, process.env.JWT_PASSWORD);
 
         const userFound = await knex('users').where({ id }).first();
 

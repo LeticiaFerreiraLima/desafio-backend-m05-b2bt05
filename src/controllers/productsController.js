@@ -4,11 +4,14 @@ const throwCustomError = require("../utils/throwCustomError");
 const createProduct = async (req, res) => {
     try {
         const { description, amount, price, category_id } = req.body;
+        const { file: product_image } = req;
 
-        const productCreated = await productsService.createProduct(description, amount, price, category_id);
-
+        const productCreated = await productsService.createProduct(description, amount, price, category_id, product_image);
+        
         return res.status(201).json(productCreated);
+
     } catch (error) {
+
         const { message, code } = error;
 
         return res.status(code).json({ message: message });
@@ -39,24 +42,26 @@ const getAllProducts = async (req, res) => {
     } catch (error) {
         const { message, code } = error;
 
-        return res.status(500).json({ message: message });
+        return res.status(code).json({ message: message });
     }
 }
 
 const updateProduct = async (req, res) => {
     const { id } = req.params;
     const { description, amount, price, category_id } = req.body;
+    const { file: product_image } = req;
 
     try {
-        const productUpdated = await productsService.updateProduct(id, description, amount, price, category_id);
+        const productUpdated = await productsService.updateProduct(id, description, amount, price, category_id, product_image,);
 
-        res.status(200).json(productUpdated);
+        res.status(200).json(productUpdated[0]);
     } catch (error) {
         const { message, code } = error;
 
         return res.status(code).json({ message: message });
     }
 };
+
 
 const deleteProductById = async (req, res) => {
     const { id } = req.params;
@@ -70,7 +75,7 @@ const deleteProductById = async (req, res) => {
 
         const { code, message } = error;
 
-        return res.status(500).json({message: message});
+        return res.status(code).json({message: message});
     }
 };
 
