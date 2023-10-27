@@ -13,27 +13,38 @@ const createOrder = async (client_id, observation, products_order) => {
   if (!clientExists) {
     throwCustomError("Não existe o cliente informado.", 404);
   }
+
   let total_value = 0;
   let product_value = 0;
+  
+  for (let i = 0; i <  products_order.length; i++) {
 
-  for (const product of products_order) {
+    // if (!product[].product_id || !product.amount_product)
+    //   throwCustomError("Preencha todos os campos obrigatórios.", 400);
 
-    if (!product.product_id || !product.amount_product)
-      throwCustomError("Preencha todos os campos obrigatórios.", 400);
+    let product = products_order[i];
 
     const productExists = await productRepository.selectProductById(product.product_id);
-
+    
     if (!productExists)
-      throw new Error(`Produto com ID ${product.product_id} não encontrado.`, 404);
+      throwCustomError(`Produto com ID ${product.product_id} não encontrado.`, 400);
 
     if (productExists.amount < product.amount_product)
-      throw new Error(`A quantidade desejada do produto ${product} não está disponível`, 401);
+      throwCustomError(`A quantidade desejada do produto ${product.product_id} não está disponível`, 400);
 
     product_value = productExists.price * product.amount_product;
-    total_value += product_value
-  }
 
-  return await ordersRepository.createOrder(client_id, observation, products_order, total_value, product_value);
+    
+    total_value += product_value;
+
+    let stockOfProduct = productExists.amount - product.amount_product
+
+  await ordersRepository.createOrder(client_id, observation, products_order, total_value, product_value);
+
+  await productRepository.subtractFromStock(stockOfProduct, product.product_id);
+
+}
+  return
 };
 
 module.exports = {
