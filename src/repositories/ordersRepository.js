@@ -22,6 +22,19 @@ const createOrder = async (client_id, observation, products_order, total_value, 
   return { order_id, client_id, observation, products_order };
 }
 
+const getAllOrders = async () => {
+  return await knex('orders')
+    .select('*');
+}
+
+const getOrdersByIdClient = async (client_id) => {
+  return await knex('orders')
+    .where('client_id', client_id)
+    .select('*');
+}
+
 module.exports = {
-  createOrder
+  createOrder,
+  getAllOrders,
+  getOrdersByIdClient
 }

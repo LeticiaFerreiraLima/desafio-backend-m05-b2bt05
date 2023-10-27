@@ -13,11 +13,33 @@ const createOrder = async (req, res) => {
     } catch (error) {
         const { message, code } = error;
 
-        return res.status(500).json({ message: message });
+        return res.status(code).json({ message: message });
     }
 
 }
 
+const getOrders = async (req, res) => {
+    try {
+        const { client_id } = req.query;
+        let orders;
+
+        if (client_id)
+            orders = await ordersService.getOrdersByIdClient(client_id);
+
+        if (!client_id)
+            orders = await ordersService.getAllOrders();
+
+
+        res.status(200).json(orders)
+
+    } catch (error) {
+        const { message, code } = error;
+
+        return res.status(code).json({ message: message });
+    }
+}
+
 module.exports = {
-    createOrder
+    createOrder,
+    getOrders
 }

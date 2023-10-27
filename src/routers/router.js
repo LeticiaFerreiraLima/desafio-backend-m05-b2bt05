@@ -4,7 +4,7 @@ const { createUser, updateUser, loginUser, getUser } = require('../controllers/u
 const { createClient, getClients, updateClient } = require('../controllers/clientController');
 const validateToken = require('../middlewares/tokenAuthentication.js');
 const { createProduct, getProduct, getAllProducts, updateProduct, deleteProductById } = require('../controllers/productsController');
-const { createOrder } = require('../controllers/ordersController')
+const { createOrder, getOrders } = require('../controllers/ordersController')
 const multer = require('../multer');
 
 const router = express.Router();
@@ -24,6 +24,7 @@ router.get('/produto', validateToken, getAllProducts)
 router.put('/produto/:id', validateToken, multer.single('file'), updateProduct);
 router.delete('/produto/:id', validateToken, deleteProductById)
 router.post('/pedido', validateToken, createOrder);
+router.get('/pedido', validateToken, getOrders);
 
 
 module.exports = router;
