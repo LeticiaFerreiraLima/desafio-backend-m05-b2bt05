@@ -2,6 +2,7 @@ const productRepository = require("../repositories/productRepository");
 const categoriesRepository = require("../repositories/categoriesRepository")
 const throwCustomError = require("../utils/throwCustomError");
 const utils = require("../utils/image");
+const ordersRepository = require("../repositories/ordersRepository");
 
 const createProduct = async (description, amount, price, category_id, product_image) => {
     if (!description || !amount || !price || !category_id)
@@ -54,9 +55,14 @@ const updateProduct = async (id, description, amount, price, category_id, produc
 };
 
 const deleteProductById = async (id) => {
+
     const productExists = await productRepository.selectProductById(id);
     if (!productExists)
         throwCustomError("O produto não foi encontrado", 404);
+
+    const productIsLinkedToOrders = await ordersRepository.getOrdersByIdProduct(id);
+    if (productIsLinkedToOrders)
+        throwCustomError("O produto está vinculado à um pedido", 400);
 
     const image = productExists.product_image;
 

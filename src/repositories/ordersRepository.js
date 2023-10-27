@@ -33,8 +33,16 @@ const getOrdersByIdClient = async (client_id) => {
     .select('*');
 }
 
+const getOrdersByIdProduct = async (product_id) => {
+  const linkedOrders = await knex('orders_products')
+    .where('product_id', product_id)
+
+  return linkedOrders.length > 0;
+}
+
 module.exports = {
   createOrder,
   getAllOrders,
-  getOrdersByIdClient
+  getOrdersByIdClient,
+  getOrdersByIdProduct
 }

@@ -7,7 +7,7 @@ const createProduct = async (req, res) => {
         const { file: product_image } = req;
 
         const productCreated = await productsService.createProduct(description, amount, price, category_id, product_image);
-        
+
         return res.status(201).json(productCreated);
 
     } catch (error) {
@@ -75,7 +75,7 @@ const deleteProductById = async (req, res) => {
 
         const { code, message } = error;
 
-        return res.status(code).json({message: message});
+        return res.status(code).json({ message: message });
     }
 };
 
