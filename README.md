@@ -2,46 +2,63 @@
 
 # Desafio Módulo 5 - Backend
 
-## Como entregar?
-
-- [ ] Crie um repositório público no GitHub de algum membro de equipe
-- [ ] Adicione os membros da equipe no repositório
-- [ ] Enviei o link desse repositório na plataforma
 
 ## Descrição do desafio
 
-Seja bem vindo(a) ao desafio do módulo 5.
+O objetivo da atividade foi desenvolver uma API para um PDV (Frente de Caixa). A aplicação conta com diversas funcionalidades, permitindo criar usuários, logar no perfil usuário para realizar atualizações e consultas, cadastrar, atualizar e excluir produtos e realizar pedidos. O sistema possui autenticação JWT e criptografia através do Bcrypt, upload de imagens no cadastro de produtos e usa o Query Builder [Knex](https://knexjs.org/). O deploy do projeto foi feito na [Cyclic](https://www.cyclic.sh/).
 
-Sua tarefa como desenvolvedor(a) será criar uma API para um PDV (Frente de Caixa). Esse será um projeto piloto, ou seja, no futuro outras funcionalidades serão implementadas.
+O desafio foi realizado simulando um cenário real de entrega de software, usando a metologia ágil Scrum e ferramentas como Kanban. Por isso, o product backlog foi dividido em 3 sprints, como será apresentado abaixo.   
 
-**Importante 1: Sempre que a validação de uma requisição falhar, responda com código de erro e mensagem adequada à situação, ok?**
+## Deploy
+https://cautious-garters-hare.cyclic.cloud
 
-**Importante 2: Para endpoints de cadastro/atualização os objetos de requisição devem conter as propriedades equivalentes as colunas das tabelas.**
+## Tecnologias Utilizadas
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-**Exemplo:**
+## Como executar o projeto
+:warning: Para a execução do projeto, é necessário ter o [Node.js](https://nodejs.org/en) instalado em sua máquina.
 
-```javascript
-// Corpo da requisição para cadastro de usuário (body)
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "jose"
-}
+
+1) Faça um clone do projeto
+```bash
+git clone https://github.com/LeticiaFerreiraLima/desafio-backend-m05-b2bt05.git
+```
+2) Abra o diretório do projeto
+```bash
+cd desafio-backend-m05-b2bt05
+```
+3) Instale as dependências utilizando o comando:
+```bash
+npm i
 ```
 
-**ATENÇÃO: Todos os endpoints deverão atender os requisitos citados acima.**
+| Dependências | Versão |
+|:----------|------|
+|Express| 4.18.2|
+|Nodemon  | 3.0.1 |
+|PG  | 8.11.3 |
+|Json Web Token | 9.0.2 |
+|Bcrypt  | 5.1.1 |
+|aws-sdk | 2.1482.0 |
+|cors | 2.8.5 |
+|dotenv | 16.3.1 |
+|knex | 3.0.1 |
+|multer | 1.4.5-lts.1 |
+|nodemailer | 6.9.7 |
 
-## **Banco de dados**
-
-Você precisa criar um Banco de Dados PostgreSQL chamado `pdv`.
-
-**IMPORTANTE: Deverá ser criado no projeto o arquivo SQL que deverá ser o script contendo os comandos de criação das tabelas respeitando os nomes das tabelas e colunas respectivamente, além de, conter os comandos para a inserção das categorias que devem ser previamente cadastradas (estão citadas na 1ª Sprint no item Listar Categorias).**
-
-## **Requisitos obrigatórios**
-
-- A API a ser criada deverá acessar o banco de dados a ser criado `pdv` para persistir e manipular os dados de categorias, clientes, pedidos, produtos e usuários utilizados pela aplicação.
-- O campo id das tabelas no banco de dados deve ser auto incremento, chave primária e não deve permitir edição uma vez criado.
-- Qualquer valor monetário deverá ser representado em centavos (Ex.: R$ 10,00 reais = 1000)
+4) Inicialize o servidor local: 
+```bash
+npm run dev
+```
+Para verificar as rotas, deve ser usada uma plataforma de API's, como Postman ou Insomnia. 
 
 ## **Status Codes**
 
@@ -539,5 +556,3 @@ Critérios de aceite:
 </details>
 
 </details>
-
-###### tags: `back-end` `módulo 5` `nodeJS` `PostgreSQL` `API REST` `desafio`
